@@ -1,191 +1,334 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ADEZ BOT — Pair</title>
-<style>
-  :root {
-    --bg: #0b1120;
-    --card: #131c31;
-    --accent: #22c55e;
-    --accent-dim: #16a34a;
-    --text: #e5e7eb;
-    --muted: #94a3b8;
-    --danger: #ef4444;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at top, #172038, var(--bg));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: var(--text);
-    padding: 24px;
-  }
-  .card {
-    width: 100%;
-    max-width: 420px;
-    background: var(--card);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  h1 { margin: 0 0 4px; font-size: 22px; }
-  .sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
-  label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
-  input {
-    width: 100%;
-    padding: 12px 14px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: #0e1526;
-    color: var(--text);
-    font-size: 15px;
-    margin-bottom: 16px;
-  }
-  input:focus { outline: none; border-color: var(--accent); }
-  button {
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: none;
-    background: var(--accent);
-    color: #06210f;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background 0.15s;
-  }
-  button:hover { background: var(--accent-dim); }
-  button:disabled { opacity: 0.5; cursor: not-allowed; }
-  .status {
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: 10px;
-    background: #0e1526;
-    font-size: 14px;
-    line-height: 1.6;
-    display: none;
-  }
-  .status.show { display: block; }
-  .code {
-    font-size: 28px;
-    letter-spacing: 4px;
-    font-weight: 800;
-    color: var(--accent);
-    text-align: center;
-    margin: 10px 0;
-  }
-  .error { color: var(--danger); }
-  .session-box {
-    word-break: break-all;
-    background: #06100a;
-    border: 1px solid var(--accent);
-    padding: 10px;
-    border-radius: 8px;
-    font-family: monospace;
-    font-size: 12px;
-    margin-top: 8px;
-  }
-  .footer { margin-top: 20px; text-align: center; font-size: 12px; color: var(--muted); }
-  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-right:6px; animation: pulse 1.2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-</style>
-</head>
-<body>
-  <div class="card">
-    <h1>🔗 ADEZ BOT — Pairing</h1>
-    <div class="sub">Owner: ARNOLD ADEZ · Prefix: <b>.</b></div>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >  <title>ADEZ MINI BOT — WhatsApp Pair</title>  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-    <form id="pairForm">
-      <label for="phone">WhatsApp number (with country code, digits only)</label>
-      <input id="phone" type="tel" placeholder="e.g. 254111783552" required />
-      <button id="submitBtn" type="submit">Generate Pairing Code</button>
-    </form>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #183b32, #07110f 55%, #030706);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-    <div id="status" class="status"></div>
-    <div class="footer">Session ID will be sent to your own WhatsApp once linked.</div>
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: rgba(10, 20, 18, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .logo {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 15px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.25);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 27px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      margin: 8px 0 22px;
+      color: #a9b8b3;
+      font-size: 14px;
+    }
+
+    .qr-box {
+      width: 320px;
+      max-width: 100%;
+      min-height: 320px;
+      margin: 0 auto 20px;
+      padding: 12px;
+      background: white;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-box img {
+      width: 100%;
+      max-width: 290px;
+      display: block;
+    }
+
+    .loading {
+      color: #222;
+      font-size: 15px;
+    }
+
+    .status {
+      min-height: 44px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #c7d4cf;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .status.success {
+      color: #25d366;
+    }
+
+    .status.error {
+      color: #ff7676;
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 14px;
+      background: #25d366;
+      color: #04120b;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .instructions {
+      text-align: left;
+      margin-top: 22px;
+      padding: 16px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #b9c6c1;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .instructions strong {
+      color: white;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #667873;
+      font-size: 11px;
+    }
+  </style></head><body>  <div class="card"><div class="logo">🤖</div>
+
+<h1>ADEZ MINI BOT</h1>
+
+<div class="subtitle">
+  WhatsApp QR Pairing
+</div>
+
+<div class="qr-box" id="qrBox">
+  <div class="loading">
+    Generating QR code...
   </div>
+</div>
 
-<script>
-  const form = document.getElementById("pairForm");
-  const statusBox = document.getElementById("status");
-  const submitBtn = document.getElementById("submitBtn");
-  let poller = null;
+<div class="status" id="status">
+  Connecting to WhatsApp...
+</div>
 
-  function showStatus(html) {
-    statusBox.innerHTML = html;
-    statusBox.classList.add("show");
-  }
+<button onclick="startPairing()">
+  🔄 Generate New QR
+</button>
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const phone = document.getElementById("phone").value.replace(/[^0-9]/g, "");
-    if (phone.length < 9) {
-      showStatus('<span class="error">Enter a valid number with country code.</span>');
-      return;
+<div class="instructions">
+  <strong>How to link:</strong><br><br>
+
+  1. Open WhatsApp on your phone.<br>
+  2. Go to <strong>Settings → Linked Devices</strong>.<br>
+  3. Tap <strong>Link a Device</strong>.<br>
+  4. Scan the QR code shown above.<br>
+  5. Wait for the page to show
+  <strong>Linked Successfully</strong>.
+</div>
+
+<div class="footer">
+  ADEZ TECH • ADEZ MINI BOT
+</div>
+
+  </div>  <script>
+    let requestId = null;
+    let polling = null;
+
+    const qrBox = document.getElementById("qrBox");
+    const statusBox = document.getElementById("status");
+
+    function setStatus(message, type = "") {
+      statusBox.className = "status " + type;
+      statusBox.textContent = message;
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Connecting...";
-    showStatus('<span class="dot"></span> Requesting pairing code...');
-
-    try {
-      const res = await fetch("/api/pair", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        showStatus(`<span class="error">${data.error || "Something went wrong."}</span>`);
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Generate Pairing Code";
-        return;
+    async function startPairing() {
+      if (polling) {
+        clearInterval(polling);
+        polling = null;
       }
 
-      showStatus(
-        `Open WhatsApp → Linked Devices → Link with phone number, then enter:` +
-        `<div class="code">${data.code || "----"}</div>` +
-        `<span class="dot"></span> Waiting for you to complete linking...`
-      );
+      requestId = null;
 
-      poller = setInterval(() => pollStatus(data.requestId), 2500);
-    } catch (err) {
-      showStatus('<span class="error">Network error. Is the server running?</span>');
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Generate Pairing Code";
-    }
-  });
+      qrBox.innerHTML = `
+        <div class="loading">
+          Generating QR code...
+        </div>
+      `;
 
-  async function pollStatus(requestId) {
-    try {
-      const res = await fetch(`/api/pair/status/${requestId}`);
-      const data = await res.json();
+      setStatus("Connecting to WhatsApp...");
 
-      if (data.status === "ready") {
-        clearInterval(poller);
-        showStatus(
-          `✅ <b>Linked!</b> Your session ID was also sent to your own WhatsApp chat.<br>` +
-          `<div class="session-box">${data.sessionId}</div>` +
-          `<div style="margin-top:10px;">Paste this into <b>deploy.html</b> to bring ADEZ BOT online.</div>`
+      try {
+        const response = await fetch("/api/pair", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({})
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Failed to start pairing."
+          );
+        }
+
+        requestId = data.requestId;
+
+        pollStatus();
+
+        polling = setInterval(
+          pollStatus,
+          1500
         );
-      } else if (data.status === "error") {
-        clearInterval(poller);
-        showStatus(`<span class="error">${data.error}</span>`);
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Generate Pairing Code";
+
+      } catch (error) {
+        console.error(error);
+
+        qrBox.innerHTML = `
+          <div class="loading">
+            ❌
+          </div>
+        `;
+
+        setStatus(
+          error.message ||
+          "Failed to start pairing.",
+          "error"
+        );
       }
-    } catch (err) {
-      // keep polling silently
     }
-  }
-</script>
-</body>
-  </html>
+
+    async function pollStatus() {
+      if (!requestId) return;
+
+      try {
+        const response = await fetch(
+          "/api/pair/status/" + requestId,
+          {
+            cache: "no-store"
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Pairing request not found."
+          );
+        }
+
+        // QR is ready
+        if (
+          data.status === "qr_ready" &&
+          data.qr
+        ) {
+          qrBox.innerHTML = `
+            <img
+              src="${data.qr}"
+              alt="WhatsApp QR Code"
+            >
+          `;
+
+          setStatus(
+            "📱 Scan this QR code with WhatsApp → Linked Devices."
+          );
+        }
+
+        // Successfully linked
+        if (data.status === "ready") {
+          if (polling) {
+            clearInterval(polling);
+            polling = null;
+          }
+
+          qrBox.innerHTML = `
+            <div style="
+              color:#25d366;
+              font-size:60px;
+            ">
+              ✓
+            </div>
+          `;
+
+          setStatus(
+            "✅ WhatsApp linked successfully! Your SESSION ID has been sent to your WhatsApp chat.",
+            "success"
+          );
+        }
+
+        // Error
+        if (data.status === "error") {
+          if (polling) {
+            clearInterval(polling);
+            polling = null;
+          }
+
+          qrBox.innerHTML = `
+            <div class="loading">
+              ❌
+            </div>
+          `;
+
+          setStatus(
+            data.error ||
+            "Pairing failed. Generate a new QR code.",
+            "error"
+          );
+        }
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // Automatically start when page opens
+    startPairing();
+  </script></body>
+</html>
