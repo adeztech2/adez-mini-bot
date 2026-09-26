@@ -5,7 +5,7 @@ module.exports = {
   async execute({ sock, msg, sender }) {
     const start = Date.now();
 
-    const sent = await sock.sendMessage(
+    await sock.sendMessage(
       sender,
       { text: "🏓 Pinging..." },
       { quoted: msg }
@@ -16,25 +16,12 @@ module.exports = {
     await sock.sendMessage(
       sender,
       {
-        text: `🏓 *PONG!*\n\n⚡ Speed: ${latency}ms\n🤖 ADEZ BOT is online!`,
+        text:
+          `🏓 *PONG!*\n\n` +
+          `⚡ Speed: ${latency}ms\n` +
+          `🤖 ADEZ BOT is online!`,
       },
       { quoted: msg }
     );
   },
 };
-
-Save it as:
-
-commands/ping.js
-
-Then send:
-
-.ping
-
-or, if your prefix is different:
-
-<prefix>ping
-
-It will also respond to:
-
-.p
