@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# WhatsApp session data — NEVER commit these, they're equivalent to your login
+temp_sessions/
+deployed_sessions/
+session/
+*.session
+
+# Logs
+npm-debug.log*
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env vars
+.env
