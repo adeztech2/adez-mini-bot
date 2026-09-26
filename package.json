@@ -1,20 +1,21 @@
 {
-  "name": "adez-bot",
-  "version": "1.0.0",
-  "description": "ADEZ BOT - WhatsApp bot powered by Baileys, owned by ARNOLD ADEZ",
-  "main": "index.js",
-  "type": "commonjs",
-  "scripts": {
-    "start": "node index.js",
-    "pair": "node pair-server.js",
-    "deploy": "node deploy-server.js"
-  },
-  "dependencies": {
-    "@whiskeysockets/baileys": "^6.7.9",
-    "express": "^4.19.2",
-    "pino": "^9.3.2"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+"name": "adez-bot",
+"version": "1.0.0",
+"description": "ADEZ BOT - WhatsApp bot powered by Baileys, owned by ARNOLD ADEZ",
+"main": "index.js",
+"type": "commonjs",
+"scripts": {
+"start": "node index.js",
+"pair": "node pair-server.js",
+"deploy": "node deploy-server.js"
+},
+"dependencies": {
+"@whiskeysockets/baileys": "^6.7.9",
+"express": "^4.19.2",
+"pino": "^9.3.2",
+"qrcode": "^1.5.4"
+},
+"engines": {
+"node": ">=18.0.0"
+}
 }
